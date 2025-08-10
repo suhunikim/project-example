@@ -12,8 +12,9 @@ export default function Login() {
     // navigate 초기화
     const navigate = useNavigate();
 
+    interface LoginForm { userEmail: string; password: string; }
     // form 초기화
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<LoginForm> ({
         userEmail: "",
         password: "",
     });
