@@ -1,0 +1,38 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+
+# Logs
+*.log
+logs/
+tmp/
+
+# Java compiled files
+*.class
+
+# Packages
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Backend build/cache
+project-backend/.gradle/
+project-backend/build/
+project-backend/out/
+
+# Frontend build/cache
+project-frontend/node_modules/
+project-frontend/dist/
+project-frontend/.cache/
+project-frontend/.npm/
+project-frontend/.pnpm-store/
+
+# Env files (real keys ignored, example allowed)
+project-backend/.env
+project-frontend/.env
+!.env.example

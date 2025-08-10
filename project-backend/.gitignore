@@ -1,0 +1,35 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build files
+build/
+target/
+.gradle/
+out/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Logs
+*.log
+*.tmp
+
+# Executable files
+*.jar
+*.war
+*.class
+
+# Spring Boot Help file (optional)
+HELP.md
+
+# ZIP file (optional)
+project-backend.zip
+
+# Environment variables
+.env
+!.env.example  # Allow example file for team reference
