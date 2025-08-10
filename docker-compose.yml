@@ -1,0 +1,51 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: mariadb-container
+    restart: always
+    ports:
+      - "3306:3306"  # 호스트 3306 <-> 컨테이너 3306
+    environment:
+      MARIADB_ROOT_PASSWORD: root123      # ← 필수
+      MARIADB_DATABASE: project-db        # ← 최초 생성할 스키마 이름
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - project_network
+
+  backend:
+    build: ./project-backend
+    container_name: springboot-container
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    env_file:
+      - ./project-backend/.env  # DB 정보 등을 .env에서 불러오기
+    networks:
+      - project_network
+
+  frontend:
+    build: ./project-frontend
+    container_name: react-container
+    restart: always
+    ports:
+      - "3001:80"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    env_file:
+      - ./project-frontend/.env  # DB 정보 등을 .env에서 불러오기
+    networks:
+      - project_network
+
+volumes:
+  mariadb_data:
+
+networks:
+  project_network:
+    driver: bridge

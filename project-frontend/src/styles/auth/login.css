@@ -1,0 +1,165 @@
+/* ── 기본 스타일 ── */
+
+/* 전체 배경 */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #74ebd5 0%, #acb6e5 100%);
+}
+
+/* 카드 형태 */
+.login-card {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 20px;
+}
+
+/* 섹션 레이아웃 기본: 한 칼럼 (PC 포함 모두) */
+.login-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+/* 제목 */
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+/* 폼 */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-input {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* 버튼 */
+.login-button {
+    padding: 12px 15px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.login-button:hover {
+    background-color: #357ABD;
+}
+
+/* 구분선 */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+    font-size: 14px;
+    color: #888888;
+}
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+    margin: 0 10px;
+}
+
+/* 구글 로그인 버튼 */
+.google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    color: #555555;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.google-button:hover {
+    background-color: #f5f5f5;
+}
+.google-button img {
+    width: 20px;
+    height: 20px;
+}
+
+/* 회원가입 텍스트 */
+.signup-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666666;
+}
+.signup-text a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ── 반응형: 미디어쿼리 모음 (맨 아래) ── */
+
+/* 1) 스마트폰 세로 (≤480px) */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 20px;
+        max-width: 90%;
+    }
+    .login-title {
+        font-size: 20px;
+    }
+    .login-input,
+    .login-button,
+    .google-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+    /* 여전히 한 칼럼 유지 */
+    .login-sections {
+        flex-direction: column;
+    }
+}
+
+/* 2) 모바일·태블릿 (481px ≤ width ≤ 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .login-card {
+        max-width: 800px;
+    }
+    .login-sections {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .login-section {
+        width: 48%;
+    }
+    .login-section.social-signup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

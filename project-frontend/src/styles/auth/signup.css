@@ -1,0 +1,125 @@
+/* ── 기본 스타일 (PC & 모바일 세로 모두 한 칼럼) ── */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+}
+
+.signup-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 20px;
+    /* height, display 설정은 미디어쿼리 구간에서만 적용 */
+}
+
+.signup-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── 입력 그룹 래퍼 ── */
+.signup-sections {
+    display: flex;
+    flex-direction: column; /* 기본 세로 쌓기 */
+    gap: 20px;
+    width: 100%;
+}
+
+/* ── 각 섹션 (이메일/비밀번호, 이름/전화번호) ── */
+.signup-section {
+    display: flex;
+    flex-direction: column; /* 섹션 안에서도 세로 쌓기 */
+    gap: 15px;
+}
+
+/* ── 라벨 안에 input 위 아래 배치 ── */
+.signup-section label {
+    display: flex;
+    flex-direction: column; /* 텍스트 위 input 아래 */
+    gap: 4px;               /* 라벨과 인풋 사이 여백 */
+    font-size: 14px;
+    color: #333;
+}
+
+/* ── 입력창 스타일 ── */
+.signup-section input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* ── 버튼 ── */
+.signup-button {
+    padding: 12px;
+    background-color: #1e90ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.signup-button:hover {
+    background-color: #187bcd;
+}
+
+.signup-error {
+    color: red;
+    font-size: 12px;
+}
+
+/* ── 반응형: 모바일 세로 포함 (≤480px) ── */
+@media (max-width: 480px) {
+    .signup-card {
+        max-width: 320px;
+        padding: 30px 20px;
+    }
+    .signup-title {
+        font-size: 20px;
+    }
+    .signup-form {
+        gap: 15px;
+    }
+    .signup-sections {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .signup-section input,
+    .signup-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* ── 반응형: 태블릿·모바일 가로 전용 (481px~1024px) ── */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .signup-card {
+        max-width: 800px;
+        height: 70vh;                /* 로그인과 같은 높이(뷰포트 대비) */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;     /* 세로 중앙 정렬 */
+    }
+    .signup-sections {
+        flex-direction: row;         /* 좌우 두 칸 레이아웃 */
+        gap: 40px;
+    }
+    .signup-section {
+        flex: 1;                     /* 균등 분배 */
+    }
+}

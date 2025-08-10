@@ -1,0 +1,69 @@
+spring:
+  profiles:
+    active: dev  # 기본적으로 로컬(dev) 환경을 활성화 (IntelliJ 실행 시 자동 적용)
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 3600
+
+logging:
+  level:
+    org.hibernate.type: trace  # SQL 실행 시 파라미터 값까지 출력 (디버깅용)
+
+---
+# ✅ 로컬 개발 환경 설정 (IntelliJ 등에서 실행)
+spring:
+  config:
+    activate:
+      on-profile: "dev"  # "dev" 프로파일이 활성화될 경우 적용됨
+  datasource:
+    url: jdbc:mariadb://localhost:3306/project-db  # 로컬 MariaDB 컨테이너 접근 (포트 3307)
+    username: root  # 로컬 DB 사용자 계정
+    password: root123  # 로컬 DB 비밀번호
+    driver-class-name: org.mariadb.jdbc.Driver  # MariaDB 드라이버
+  jpa:
+    hibernate:
+      ddl-auto: update  # 기존 테이블 유지하며 변경 사항 반영 (create 사용 시 매번 테이블 삭제됨)
+    database-platform: org.hibernate.dialect.MariaDBDialect  # MariaDB에 맞는 Hibernate SQL 생성
+    show-sql: true  # 실행되는 SQL 쿼리를 콘솔에 출력
+    properties:
+      hibernate:
+        format_sql: true  # SQL 쿼리 가독성을 높이기 위해 포맷팅
+        default_batch_fetch_size: 1000  # N+1 문제 방지를 위한 기본 페치 사이즈 설정
+
+---
+# ✅ Docker 환경에서 실행할 때 적용되는 설정
+spring:
+  config:
+    activate:
+      on-profile: "docker"  # "docker" 프로파일이 활성화될 경우 적용됨
+  datasource:
+    url: ${DATABASE_URL}  # Docker 환경에서는 .env 파일의 DATABASE_URL 값 사용
+    username: ${DATABASE_USERNAME}  # .env에서 불러온 DB 사용자 이름
+    password: ${DATABASE_PASSWORD}  # .env에서 불러온 DB 비밀번호
+    driver-class-name: org.mariadb.jdbc.Driver  # MariaDB 드라이버
+  jpa:
+    hibernate:
+      ddl-auto: update  # 기존 테이블 유지하며 변경 사항 반영
+    database-platform: org.hibernate.dialect.MariaDBDialect  # MariaDB에 맞는 SQL 생성
+    show-sql: true  # 실행되는 SQL을 콘솔에 출력
+    properties:
+      hibernate:
+        format_sql: true  # SQL 쿼리 가독성 향상
+        default_batch_fetch_size: 1000  # N+1 문제 완화를 위한 기본 페치 사이즈
+
+---
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}  # Google OAuth2 클라이언트 ID
+            client-secret: ${GOOGLE_CLIENT_SECRET}  # Google OAuth2 클라이언트 비밀키
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"  # 리다이렉트 URI
+            scope: profile, email  # 요청할 권한 범위
+            authorization-grant-type: authorization_code  # 인증 방식
+            client-name: google  # 클라이언트 이름
+
+

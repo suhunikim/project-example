@@ -1,0 +1,190 @@
+/* src/styles/main/AdminDashboard.css */
+
+/* 상단 카드 레이아웃 */
+.row-top {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+}
+.row-top .card {
+    flex: 1;
+    padding: 16px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100px;
+}
+.card.green  { background-color: #2dd4bf; }
+.card.yellow { background-color: #f97316; color: white; }
+.card.red    { background-color: #dc2626; }
+
+/* 하단 전체 레이아웃 */
+.row-bottom {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    min-height: 0;
+    height: 100%;
+}
+
+/* bottom-left 섹션 */
+.bottom-left {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+.employee-status,
+.part-status {
+    flex: 1;
+    height: 0;
+    overflow: auto;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.employee-status h3,
+.part-status h3 {
+    margin: 0;
+    padding: 0 16px 8px 0;
+    font-size: 16px;
+}
+.employee-status table,
+.part-status table {
+    margin: 0;
+    padding: 0 16px 16px 16px;
+    height: 100%;
+    background-color: #f9fafb;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+}
+.employee-status table td,
+.employee-status table th,
+.part-status table td,
+.part-status table th {
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+/* bottom-right 섹션 */
+.bottom-right {
+    flex: 2;
+    display: grid;
+    grid-template-areas:
+        "tech"
+        "project"
+        "team"
+        "top";
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.tech-stack       { grid-area: tech; }
+.project-info     { grid-area: project; }
+.team-ratio       { grid-area: team; }
+.top-participants { grid-area: top; }
+
+.tech-stack,
+.project-info,
+.team-ratio,
+.top-participants {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.tech-stack h3,
+.project-info h3,
+.team-ratio h3,
+.top-participants h3 {
+    margin: 0;
+    padding: 0 16px 8px 0;
+    font-size: 16px;
+}
+.tech-stack ul,
+.project-info ul,
+.team-ratio p,
+.top-participants ol {
+    padding: 0 16px 16px 16px;
+    margin: 0;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+}
+
+/* 공통 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+th {
+    background-color: #f3f4f6;
+    color: #111827;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+}
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* 상태 점 (Dot) */
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+.dot.green  { background-color: #22c55e; }
+.dot.orange { background-color: #f97316; }
+
+/* 하단 그리드 반응형 (데스크탑) */
+@media (min-width: 1024px) {
+    .bottom-right {
+        grid-template-areas:
+            "tech tech"
+            "project team"
+            "top top";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* 하단 그리드 반응형 (모바일) */
+@media (max-width: 1023px) {
+    .row-top {
+        flex-direction: column;
+    }
+    .row-top .card {
+        width: 100%;
+    }
+    .row-bottom {
+        flex-direction: column;
+    }
+    .bottom-left,
+    .bottom-right {
+        width: 100%;
+    }
+    .bottom-right {
+        display: flex;
+        flex-direction: column;
+    }
+}
